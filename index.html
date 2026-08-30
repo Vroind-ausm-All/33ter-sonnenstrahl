@@ -237,6 +237,56 @@ main>section{padding:7rem 0}
 .response-box .typing::after{content:'▋';animation:blink .8s steps(1) infinite;color:var(--olive);font-size:.8em}
 @keyframes blink{50%{opacity:0}}
 
+/* ── Floating CTA → Zusage ── */
+.cta-float{position:fixed;right:1.4rem;bottom:1.4rem;z-index:70;display:inline-flex;align-items:center;gap:.7rem;padding:1rem 1.5rem;background:var(--olive);border:1px solid var(--olive);color:var(--void);font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;animation:ctaPulse 2.2s infinite;transition:opacity .4s,transform .4s,background .25s;opacity:0;transform:translateY(140%);pointer-events:none}
+.cta-float.show{opacity:1;transform:none;pointer-events:auto}
+.cta-float::after{content:'↓';font-family:var(--sans);font-size:.95rem}
+.cta-float:hover{background:var(--bone);border-color:var(--bone)}
+@keyframes ctaPulse{0%{box-shadow:0 0 0 0 rgba(184,188,58,.55)}70%{box-shadow:0 0 0 18px rgba(184,188,58,0)}100%{box-shadow:0 0 0 0 rgba(184,188,58,0)}}
+.form-card.spotlight{border-color:var(--olive);box-shadow:0 0 60px rgba(184,188,58,.28),inset 0 0 30px rgba(184,188,58,.06);transition:border-color .4s,box-shadow .4s}
+.nudge{animation:nudgeGlow 1.4s ease-in-out 2}
+@keyframes nudgeGlow{50%{border-color:var(--olive);box-shadow:0 0 22px rgba(184,188,58,.4)}}
+
+/* ── RSVP Fortschritt ── */
+.rsvp-progress{display:flex;gap:.5rem;margin-bottom:1.8rem}
+.rsvp-step{flex:1;display:flex;flex-direction:column;gap:.4rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);transition:color .4s}
+.rsvp-step::before{content:'';height:2px;background:var(--rule);transition:background .4s}
+.rsvp-step.done{color:var(--olive)}
+.rsvp-step.done::before{background:var(--olive)}
+
+/* ── Orakel: alle Karten (nach 5. Ziehung) ── */
+.oracle-open{margin-top:1.8rem;display:none}
+.oracle-open.show{display:block;animation:gridIn .55s ease}
+.oracle-open>.label{margin-bottom:.8rem;color:var(--olive)}
+.oracle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.5rem;max-height:340px;overflow-y:auto;padding-right:.3rem;scrollbar-width:thin;scrollbar-color:var(--olive2) transparent}
+.oracle-choice{position:relative;text-align:left;padding:1.2rem .8rem .7rem;border:1px solid var(--rule);background:rgba(240,239,232,.03);color:var(--ash);font-family:var(--sans);font-weight:300;font-size:.72rem;line-height:1.4;transition:.25s}
+.oracle-choice::before{content:attr(data-n);position:absolute;top:.35rem;right:.5rem;font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--olive2)}
+.oracle-choice:hover{border-color:var(--bone);color:var(--bone)}
+.oracle-choice.sel{border-color:var(--olive);color:var(--bone);background:rgba(184,188,58,.1)}
+.oracle-choice.sel::before{color:var(--olive)}
+@keyframes gridIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ── Anreise & Parken ── */
+.travel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:2.4rem}
+@media(max-width:860px){.travel-grid{grid-template-columns:1fr}}
+.travel-card{background:var(--void2);padding:2rem;position:relative}
+.travel-n{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--olive)}
+.travel-card h4{font-family:var(--cond);font-weight:600;font-size:1.45rem;margin:.6rem 0 .5rem;letter-spacing:-.01em}
+.travel-card p{color:var(--ash);font-weight:300;font-size:.92rem}
+.travel-cta{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border:1px solid var(--olive);background:rgba(184,188,58,.06);padding:2rem 2.4rem}
+.travel-cta h3{font-family:var(--cond);font-weight:600;font-size:1.8rem;letter-spacing:-.01em;margin-bottom:.3rem}
+.wa-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:.7rem;padding:1rem 1.8rem;background:var(--olive);color:var(--void);font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;transition:.3s}
+.wa-btn::after{content:'↗';font-family:var(--sans);font-size:.9rem}
+.wa-btn:hover{background:var(--bone)}
+
+/* ── Warnhinweis ── */
+.warn-box{margin-top:2.4rem;border:1px solid var(--olive);background:rgba(184,188,58,.06);position:relative;padding:1.5rem 1.8rem 1.5rem 2.2rem;overflow:hidden}
+.warn-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:9px;background:repeating-linear-gradient(-45deg,var(--olive) 0 9px,transparent 9px 18px)}
+.warn-title{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);margin-bottom:.6rem}
+.warn-box p{font-weight:300;font-size:.95rem;color:var(--bone)}
+.warn-box p+p{margin-top:.4rem}
+.warn-box strong{font-weight:500;color:var(--olive)}
+
 /* ── LOCATION ─────────────────────────────────────────── */
 .loc-wrap{position:relative;height:65vh;min-height:400px;overflow:hidden;border-top:1px solid var(--rule);z-index:1}
 .loc-wrap img{position:absolute;inset:-20% 0;width:100%;height:140%;object-fit:cover;filter:grayscale(1) contrast(1.3) brightness(.28);will-change:transform}
@@ -293,6 +343,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 <canvas id="grain" aria-hidden="true"></canvas>
 <canvas id="shapes" aria-hidden="true"></canvas>
 
+<button class="cta-float" id="ctaFloat" type="button"><span>Bist du dabei? Jetzt zusagen</span></button>
+
 <!-- HEADER -->
 <header>
   <div class="wrap">
@@ -303,6 +355,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
       <a href="#lineup">Line-up</a>
       <a href="#rsvp">Zusage</a>
       <a href="#ort">Ort</a>
+      <a href="#anreise">Anreise</a>
     </nav>
     <div class="label date" style="color:var(--olive)">11 · 09 · 26</div>
     <button class="burger" id="burger" aria-label="Menü" aria-expanded="false"></button>
@@ -383,9 +436,15 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
       </div>
       <div class="facts-grid">
         <div class="fact"><span class="label">Wann</span><div class="fact-val">11. September 2026<small>Freitag · ab 18 Uhr · offenes Ende</small></div></div>
-        <div class="fact"><span class="label">Wo</span><div class="fact-val">Bergweg 46, Gronau<small>Württemberg · oben, wo man weit sieht</small></div></div>
+        <div class="fact"><span class="label">Wo</span><div class="fact-val">Bergweg 46, Gronau<small>Württemberg · Nach dem Häckselplatz zwei Mal rechts</small></div></div>
         <div class="fact"><span class="label">Wie</span><div class="fact-val">Bring mit, wen du magst.<small>Decke gegen die Kälte. Jacke gegen die Vernunft.</small></div></div>
         <div class="fact"><span class="label">Warum</span><div class="fact-val">33 Jahre.<small>Und ich habe vor, bis zum zweiten Sonnenstrahl zu bleiben.</small></div></div>
+      </div>
+
+      <div class="warn-box">
+        <div class="warn-title">Warnhinweis · Kein WC am Berg</div>
+        <p><strong>Oben gibt es keine Toiletten.</strong> Weinberge und Wald müssen reichen.</p>
+        <p><strong>Bitte Getränke mitbringen</strong> – für Cola, Sprudel und ein paar Spaßgetränke ist jedoch gesorgt.</p>
       </div>
     </div>
   </section>
@@ -492,11 +551,22 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
           </div>
 
           <button class="submit-btn" id="oracleDraw" type="button"><span>Karte ziehen</span></button>
+
+          <div class="oracle-open" id="oracleOpen" aria-hidden="true">
+            <div class="label">Fünf Züge. Das Orakel gibt ab – wähl selbst.</div>
+            <div class="oracle-grid" id="oracleGrid" role="listbox" aria-label="Alle 33 Karten zur Auswahl"></div>
+          </div>
         </div>
 
         <div class="form-card" id="rsvp-card">
           <h3>Bist du dabei?</h3>
           <p class="lead">Ein Klick reicht. Der Rest ist freiwillig.</p>
+
+          <div class="rsvp-progress" aria-hidden="true">
+            <div class="rsvp-step" id="step-name">01 Deckname</div>
+            <div class="rsvp-step" id="step-choice">02 Zusage</div>
+            <div class="rsvp-step" id="step-send">03 Abschicken</div>
+          </div>
 
           <div class="field">
             <label for="rsvp-name">Sag jetzt!</label>
@@ -519,8 +589,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
               <option value="alleine">Ich komme allein</option>
               <option value="partner">Mit Partner/in</option>
               <option value="gruppe">Mit einer Gruppe</option>
-              <option value="wen_ich_hab">Mit allen, die ich kriege</option>
             </select>
+          </div>
+
+          <div class="field" id="group-field" style="display:none">
+            <label for="rsvp-group">Wer gehört zur Gruppe? (Pflicht)</label>
+            <input type="text" id="rsvp-group" placeholder="NAMEN – ES BLEIBT EIN GEBURTSTAG">
           </div>
 
           <div class="field">
@@ -550,6 +624,42 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
       <a class="loc-btn" href="https://maps.app.goo.gl/UPZjyvDNQVxnN4No7" target="_blank" rel="noopener">Route öffnen</a>
     </div>
   </div>
+
+  <!-- Anreise & Parken -->
+  <section id="anreise" class="section-rule reveal">
+    <div class="wrap">
+      <div class="col-grid" style="margin-bottom:2.4rem">
+        <div class="label" style="padding-top:.2rem">Anreise &amp; Parken</div>
+        <div style="padding-top:.2rem"><span class="label">Wenige Plätze · Viele Sitze</span></div>
+      </div>
+
+      <div class="travel-grid">
+        <div class="travel-card">
+          <span class="travel-n">01 — Parken</span>
+          <h4>Eine Handvoll Stellplätze</h4>
+          <p>Oben am Bergweg ist kaum Platz. Wer voll besetzt ankommt, parkt zuerst – wer allein fährt, läuft von unten. Also: Sitze füllen, Börse nutzen.</p>
+        </div>
+        <div class="travel-card">
+          <span class="travel-n">02 — Öffentlich</span>
+          <h4>Bus bis Gronau, dann bergauf</h4>
+          <p>Bus bis Gronau Ortsmitte, von dort rund 15 Minuten zu Fuß den Berg hoch. Die letzten Verbindungen enden früh – plant die Rückfahrt oder bleibt einfach bis zum Sonnenaufgang.</p>
+        </div>
+        <div class="travel-card">
+          <span class="travel-n">03 — Abholung</span>
+          <h4>Wir holen dich unten ab</h4>
+          <p>Ohne Auto, ohne Bus? Schreib es in deine Zusage – dann wirst du unten im Ort eingesammelt. Notfalls Taxi bis zur Ortsmitte, den Rest regeln wir.</p>
+        </div>
+      </div>
+
+      <div class="travel-cta">
+        <div>
+          <h3>Anreisebörse</h3>
+          <p class="lead" style="margin-bottom:0">Biete Sitzplätze an oder such dir eine Mitfahrgelegenheit – Fahrer und Mitfahrer finden sich direkt in der Gruppe.</p>
+        </div>
+        <a class="wa-btn" href="https://chat.whatsapp.com/EgudPIE2IFf2b2c37XY3i7" target="_blank" rel="noopener"><span>Zur Mitfahr-Gruppe</span></a>
+      </div>
+    </div>
+  </section>
 
   <!-- Outro -->
   <section class="outro reveal" id="outro">
@@ -820,20 +930,46 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     btn.classList.add('active');
     rsvpChoice = btn.dataset.val;
     document.getElementById('bring-field').style.display = rsvpChoice === 'ja' ? '' : 'none';
+    document.getElementById('group-field').style.display =
+      rsvpChoice === 'ja' && document.getElementById('rsvp-bring').value === 'gruppe' ? '' : 'none';
+  });
+
+  /* ── Gruppen-Namen: Pflichtfeld einblenden, wenn „Mit einer Gruppe“ gewählt ── */
+  document.getElementById('rsvp-bring').addEventListener('change', e=>{
+    document.getElementById('group-field').style.display = e.target.value === 'gruppe' ? '' : 'none';
   });
 
   /* ── RSVP submit ── */
   document.getElementById('rsvp-submit').addEventListener('click', async ()=>{
-    const name   = document.getElementById('rsvp-name').value.trim() || 'Unbekannte/r';
+    const nameEl = document.getElementById('rsvp-name');
+    const name   = nameEl.value.trim();
     const bring  = document.getElementById('rsvp-bring').value;
+    const group  = document.getElementById('rsvp-group').value.trim();
     const msg    = document.getElementById('rsvp-msg').value.trim();
     const box    = document.getElementById('rsvp-response');
     const btn    = document.getElementById('rsvp-submit');
     const card   = document.getElementById('rsvp-card');
 
+    if(!name){
+      box.textContent='Erst der Deckname – ohne dich kein Sonnenstrahl.'; box.classList.add('show');
+      card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+      nameEl.classList.remove('nudge'); void nameEl.offsetWidth; nameEl.classList.add('nudge');
+      nameEl.focus();
+      return;
+    }
     if(!rsvpChoice){
       box.textContent='Sag mir kurz, ob du kommst – dann geht’s weiter.'; box.classList.add('show');
       card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+      const pills = document.getElementById('rsvp-pills');
+      pills.classList.remove('nudge'); void pills.offsetWidth; pills.classList.add('nudge');
+      return;
+    }
+    if(rsvpChoice === 'ja' && bring === 'gruppe' && !group){
+      box.textContent='Eine Gruppe ohne Namen gibt es hier nicht – es bleibt ein Geburtstag.'; box.classList.add('show');
+      card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+      const groupEl = document.getElementById('rsvp-group');
+      groupEl.classList.remove('nudge'); void groupEl.offsetWidth; groupEl.classList.add('nudge');
+      groupEl.focus();
       return;
     }
     if(rsvpChoice === 'ja') confetti();
@@ -841,10 +977,46 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     btn.disabled = true;
     box.innerHTML = '<span class="typing">Einen Moment</span>';
     box.classList.add('show');
-    sendMail(name, rsvpChoice, bring, msg);
+    sendMail(name, rsvpChoice, bring, msg, group);
     const reply = await askClaude(buildRsvpPrompt(name, rsvpChoice, bring, msg));
     typeOut(box, reply);
     btn.disabled = false;
+    document.getElementById('step-send').classList.add('done');
+    rsvpDone = true; updateCta();
+  });
+
+  /* ── Floating CTA: auffällig hin zur Zusage, weg sobald erledigt ── */
+  const ctaFloat = document.getElementById('ctaFloat');
+  const rsvpSection = document.getElementById('rsvp');
+  let rsvpDone = false, rsvpVisible = false, nudged = false;
+  function updateCta(){
+    const past = scrollY > innerHeight * .7;
+    ctaFloat.classList.toggle('show', past && !rsvpVisible && !rsvpDone && !document.body.classList.contains('locked'));
+  }
+  new IntersectionObserver(es=>{
+    rsvpVisible = es[0].isIntersecting;
+    updateCta();
+    if(rsvpVisible && !nudged){
+      nudged = true;
+      const nameEl = document.getElementById('rsvp-name');
+      if(!nameEl.value.trim()) setTimeout(()=>nameEl.classList.add('nudge'), 600);
+    }
+  }, {threshold:.15}).observe(rsvpSection);
+  addEventListener('scroll', updateCta, {passive:true});
+  ctaFloat.addEventListener('click', ()=>{
+    rsvpSection.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+    const card = document.getElementById('rsvp-card');
+    card.classList.add('spotlight');
+    setTimeout(()=>document.getElementById('rsvp-name').focus({preventScroll:true}), reduce ? 0 : 750);
+    setTimeout(()=>card.classList.remove('spotlight'), 2600);
+  });
+
+  /* ── Fortschritt im Formular ── */
+  document.getElementById('rsvp-name').addEventListener('input', e=>{
+    document.getElementById('step-name').classList.toggle('done', !!e.target.value.trim());
+  });
+  document.getElementById('rsvp-pills').addEventListener('click', e=>{
+    if(e.target.closest('.pill-btn')) document.getElementById('step-choice').classList.add('done');
   });
 
   /* ── Geschenk-Orakel: Karten ── */
@@ -883,27 +1055,58 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
     'Ein Foto von heute Nacht, ausgedruckt. Nicht gepostet. Ausgedruckt.',
     '33 Euro. 33 Minuten. Oder 33 Gründe, warum wir uns kennen. Du entscheidest.'
   ];
-  let cardPool = [], cardN = 0;
+  let cardPool = [], cardN = 0, oracleChoice = '';
   const oc = document.getElementById('oracleCard');
-  function drawCard(){
-    if(!cardPool.length) cardPool = [...cards].sort(()=>Math.random()-.5);
-    const txt = cardPool.pop(); cardN++;
+  function showCard(txt, label){
     oc.classList.remove('flip'); void oc.offsetWidth; oc.classList.add('flip');
-    oc.setAttribute('data-n', 'Karte ' + String(((cardN-1)%cards.length)+1).padStart(2,'0') + ' / ' + cards.length);
+    oc.setAttribute('data-n', label);
     const sp = oc.querySelector('span'); sp.textContent = txt;
     glitch(sp, txt);
   }
+  function drawCard(){
+    if(!cardPool.length) cardPool = [...cards].sort(()=>Math.random()-.5);
+    const txt = cardPool.pop(); cardN++;
+    oracleChoice = txt;
+    showCard(txt, 'Karte ' + String(((cardN-1)%cards.length)+1).padStart(2,'0') + ' / ' + cards.length);
+    if(cardN >= 5) setTimeout(openOracleGrid, reduce ? 0 : 900);
+  }
   document.getElementById('oracleDraw').addEventListener('click', drawCard);
+
+  /* Nach dem fünften Zug gibt das Orakel ab: alle 33 Karten klappen als Auswahl auf */
+  function openOracleGrid(){
+    const wrap = document.getElementById('oracleOpen');
+    if(wrap.classList.contains('show')) return;
+    const grid = document.getElementById('oracleGrid');
+    cards.forEach((txt, i)=>{
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'oracle-choice'; b.textContent = txt;
+      b.setAttribute('data-n', String(i+1).padStart(2,'0'));
+      b.setAttribute('role','option'); b.setAttribute('aria-selected','false');
+      b.addEventListener('click', ()=>{
+        grid.querySelectorAll('.oracle-choice').forEach(x=>{ x.classList.remove('sel'); x.setAttribute('aria-selected','false'); });
+        b.classList.add('sel'); b.setAttribute('aria-selected','true');
+        oracleChoice = txt;
+        showCard(txt, 'Karte ' + String(i+1).padStart(2,'0') + ' · deine Wahl');
+      });
+      grid.appendChild(b);
+    });
+    wrap.classList.add('show'); wrap.setAttribute('aria-hidden','false');
+    const btn = document.getElementById('oracleDraw');
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Das Orakel schweigt jetzt';
+  }
 
   /* ── E-Mail an den Gastgeber (FormSubmit, kein Backend nötig) ── */
   const MAIL_TO = 'ocsavrekier@gmail.com';
   const choiceTxt = {ja:'Ja, ich komme', vielleicht:'Vielleicht', nein:'Leider nicht'};
-  const bringTxtMap = {alleine:'allein', partner:'mit Partner/in', gruppe:'mit einer Gruppe', wen_ich_hab:'mit allen, die er/sie kriegt', '':'—'};
-  async function sendMail(name, choice, bring, msg){
+  const bringTxtMap = {alleine:'allein', partner:'mit Partner/in', gruppe:'mit einer Gruppe', '':'—'};
+  async function sendMail(name, choice, bring, msg, group){
     const payload = {
       _subject: `Zusage 33ter Sonnenstrahl: ${name} – ${choiceTxt[choice]}`,
       _template: 'table', _captcha: 'false',
-      Name: name, Kommt: choiceTxt[choice], Begleitung: bringTxtMap[bring] || bring, Nachricht: msg || '—',
+      Name: name, Kommt: choiceTxt[choice], Begleitung: bringTxtMap[bring] || bring,
+      Gruppe: group || '—', Nachricht: msg || '—',
+      Orakelkarte: oracleChoice || '—',
       Gesendet: new Date().toLocaleString('de-DE')
     };
     try{
@@ -911,14 +1114,14 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
       if(!r.ok) throw new Error(r.status);
     }catch(err){
       // Fallback: Mailprogramm öffnen
-      const body = `Name: ${name}\nKommt: ${choiceTxt[choice]}\nBegleitung: ${bringTxtMap[bring]||bring}\nNachricht: ${msg||'—'}`;
+      const body = `Name: ${name}\nKommt: ${choiceTxt[choice]}\nBegleitung: ${bringTxtMap[bring]||bring}\nGruppe: ${group||'—'}\nNachricht: ${msg||'—'}\nOrakelkarte: ${oracleChoice||'—'}`;
       window.open(`mailto:${MAIL_TO}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`, '_blank');
     }
   }
 
   /* ── Prompt builders ── */
   function buildRsvpPrompt(name, choice, bring, msg){
-    const bringTxt = {alleine:'kommt allein', partner:'kommt mit Partner/in', gruppe:'kommt mit einer Gruppe', wen_ich_hab:'bringt alle mit, die er/sie kriegt'}[bring] || '';
+    const bringTxt = {alleine:'kommt allein', partner:'kommt mit Partner/in', gruppe:'kommt mit einer Gruppe'}[bring] || '';
     const ctx = {
       ja:         `${name} sagt zu! ${bringTxt ? bringTxt+'.' : ''} ${msg ? 'Nachricht: '+msg : ''}`,
       vielleicht: `${name} ist noch unentschlossen. ${msg ? 'Kommentar: '+msg : ''}`,
