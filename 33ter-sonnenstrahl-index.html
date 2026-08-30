@@ -64,9 +64,10 @@ nav a:hover{color:var(--bone)}
 .burger::before{top:.8rem}.burger::after{bottom:.8rem}
 .burger.open::before{top:50%;transform:rotate(45deg)}.burger.open::after{bottom:auto;top:50%;transform:rotate(-45deg)}
 @media(max-width:760px){
-  nav{display:none;position:fixed;inset:3.2rem 0 0 0;background:rgba(14,15,12,.96);flex-direction:column;gap:0;padding:2rem 1.5rem}
+  nav{display:none;position:fixed;inset:3.2rem 0 0 0;height:calc(100svh - 3.2rem);background:rgba(9,10,7,.93);flex-direction:column;gap:0;padding:2rem 1.5rem;overflow:hidden}
   nav.open{display:flex}
-  nav a{font-family:var(--cond);font-size:2.6rem;letter-spacing:0;text-transform:none;padding:.6rem 0;border-bottom:1px solid var(--rule-s);color:var(--bone)}
+  nav::before{content:'';position:absolute;inset:0;z-index:0;opacity:.4;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  nav a{position:relative;z-index:1;font-family:var(--cond);font-weight:700;font-size:2.6rem;letter-spacing:-.02em;text-transform:uppercase;padding:.6rem 0;border-bottom:1px solid var(--rule-s);color:var(--bone)}
   .burger{display:block}
   .date{display:none}
 }
@@ -586,10 +587,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 
   /* ── NAV ── */
   const burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  const navLinks = [...nav.querySelectorAll('a')];
   burger.addEventListener('click', ()=>{
     const open = nav.classList.toggle('open');
     burger.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open);
+    if(open) navLinks.forEach((a,i)=>setTimeout(()=>glitch(a), 70 + i*70));
   });
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{ nav.classList.remove('open'); burger.classList.remove('open'); }));
 
